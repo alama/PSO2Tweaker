@@ -2930,7 +2930,7 @@ End Class
 
 
 Public Class ConsoleRenderer
-    Implements IRenderer
+    Implements ITrigger
 
     Dim _downloadedfilecount As Integer = 0
     Dim patchfilecount As Integer = 0
@@ -2953,50 +2953,51 @@ Public Class ConsoleRenderer
         Helper.WriteDebugInfo(s)
     End Sub
 
-    Private Sub IRenderer_WriteLine(s As String) Implements IRenderer.WriteLine
-        'These are placeholders - Once everything is set in stone and ready, I'll modify the strings in a much better fashion. [AIDA]
-        'These nothing wrong with the engine strings themselves, but I can count the amount of PSO2 players who know what hashes are on two hands. [AIDA]
+    'Private Sub ITrigger_WriteLine(s As String) Implements ITrigger.WriteLine
+    '    'These are placeholders - Once everything is set in stone and ready, I'll modify the strings in a much better fashion. [AIDA]
+    '    'These nothing wrong with the engine strings themselves, but I can count the amount of PSO2 players who know what hashes are on two hands. [AIDA]
 
-        If s.Contains("Download failed http://download.pso2.jp/patch_prod/patches/data/win32/script/user_default.pso2.pat") = True Then Exit Sub
-        If s.Contains("Download failed http://download.pso2.jp/patch_prod/patches_old/data/win32/script/user_intel.pso2.pat") = True Then Exit Sub
+    '    If s.Contains("Download failed http://download.pso2.jp/patch_prod/patches/data/win32/script/user_default.pso2.pat") = True Then Exit Sub
+    '    If s.Contains("Download failed http://download.pso2.jp/patch_prod/patches_old/data/win32/script/user_intel.pso2.pat") = True Then Exit Sub
 
-        If s.Contains("Downloading patchlists...") Then s = "Checking for PSO2 updates..."
-        If s.Contains("Scanning for legacy files...") Or s.Contains("There are no legacy files to clean up!") Or s.Contains("Patchlist contains ") Then Exit Sub
-        If s.Contains("Searching for latest game client hashes...") Then Exit Sub
-        If s.Contains("Unable to read the latest client file hashes!") Then s = "Couldn't find previous update data, starting from scratch..."
-        If s.Contains("Game client hashes found!") Then s = "Found previous update data!"
-        If s.Contains("Discovering missing files...") Then s = "Checking for missing files..."
-        If s.Contains("A little housekeeping...") Then s = "Cleaning up..."
-        If s.Contains("Your game is up-to-date!") Then
-            s = "Your game appears to be up-to-date! If you believe this is incorrect, please click Troubleshooting -> Check for Old/Missing Files to do a full filecheck instead of a fast check."
-            patchwriter.Flush()
-            patchwriter.Close()
-        End If
+    '    If s.Contains("Downloading patchlists...") Then s = "Checking for PSO2 updates..."
+    '    If s.Contains("Scanning for legacy files...") Or s.Contains("There are no legacy files to clean up!") Or s.Contains("Patchlist contains ") Then Exit Sub
+    '    If s.Contains("Searching for latest game client hashes...") Then Exit Sub
+    '    If s.Contains("Unable to read the latest client file hashes!") Then s = "Couldn't find previous update data, starting from scratch..."
+    '    If s.Contains("Game client hashes found!") Then s = "Found previous update data!"
+    '    If s.Contains("Discovering missing files...") Then s = "Checking for missing files..."
+    '    If s.Contains("A little housekeeping...") Then s = "Cleaning up..."
+    '    If s.Contains("Your game is up-to-date!") Then
+    '        s = "Your game appears to be up-to-date! If you believe this is incorrect, please click Troubleshooting -> Check for Old/Missing Files to do a full filecheck instead of a fast check."
+    '        patchwriter.Flush()
+    '        patchwriter.Close()
+    '    End If
 
-        If s.Contains("PSO2 Tweaker ver") Then Exit Sub
+    '    If s.Contains("PSO2 Tweaker ver") Then Exit Sub
 
-        If s.Contains("PARSING ") Or s.Contains("READY ") Or s.Contains("Merging ") Then
-            Exit Sub
-        End If
+    '    If s.Contains("PARSING ") Or s.Contains("READY ") Or s.Contains("Merging ") Then
+    '        Exit Sub
+    '    End If
 
-        If s.Contains(" deleted") Then
-            patchwriter.WriteLine(s)
-            'Helper.PatchLog(s)
-        Else
-            Helper.WriteDebugInfo(s)
-        End If
-    End Sub
+    '    If s.Contains(" deleted") Then
+    '        patchwriter.WriteLine(s)
+    '        'Helper.PatchLog(s)
+    '    Else
+    '        Helper.WriteDebugInfo(s)
+    '    End If
+    'End Sub
+
     Public Sub WritePatchLog(s As String)
         patchwriter.WriteLine(DateTime.Now.ToString("G") & " " & s)
     End Sub
-    Private Sub IRenderer_AppendLog(s As String) Implements IRenderer.AppendLog
+    Private Sub ITrigger_AppendLog(s As String) Implements ITrigger.AppendLog
         'Helper.WriteDebugInfo(s)
         If s.Contains("Downloading a file from") Then s = s.Replace("Downloading a file from ", "Downloading ")
         WritePatchLog(s.Replace("http://download.pso2.jp/patch_prod/patches/data/win32/", "").Replace("http://download.pso2.jp/patch_prod/patches_old/data/win32/", "").Replace(".pat", "").Replace("data/win32/", "data\win32\"))
     End Sub
 
 
-    Private Sub IRenderer_OnDownloadStart(url As String, client As WebClient) Implements IRenderer.OnDownloadStart
+    Private Sub ITrigger_OnDownloadStart(url As String, client As WebClient) Implements ITrigger.OnDownloadStart
 
         If DoneDownloading = True Then Exit Sub
         'If url.Contains("PSO2JP.ini") Or url.Contains("gameversion.ver") Or url.Contains("GameGuard.des") Or url.Contains("edition.txt") Then
@@ -3100,7 +3101,7 @@ Public Class ConsoleRenderer
 
     End Sub
 
-    Private Sub IRenderer_OnDownloadFinish(url As String) Implements IRenderer.OnDownloadFinish
+    Private Sub ITrigger_OnDownloadFinish(url As String) Implements ITrigger.OnDownloadFinish
         If frmDownloader.ProgressBarX1.Text = url Then
             frmDownloader.ProgressBarX1.Text = ""
         End If
@@ -3128,24 +3129,25 @@ Public Class ConsoleRenderer
         'Throw New NotImplementedException()
     End Sub
 
-    Private Sub IRenderer_OnDownloadRetry(url As String, delaySecond As Integer) Implements IRenderer.OnDownloadRetry
+    Private Sub ITrigger_OnDownloadRetry(url As String, delaySecond As Integer) Implements ITrigger.OnDownloadRetry
         WritePatchLog("Retrying download for " & url.Replace("http://download.pso2.jp/patch_prod/patches/data/win32/", "").Replace("http://download.pso2.jp/patch_prod/patches_old/data/win32/", "").Replace("http://download.pso2.jp/patch_prod/patches/", "").Replace(".pat", ""))
         'Throw New NotImplementedException()
     End Sub
 
-    Private Sub IRenderer_OnDownloadAborted(url As String) Implements IRenderer.OnDownloadAborted
+    Private Sub ITrigger_OnDownloadAborted(url As String) Implements ITrigger.OnDownloadAborted
         WritePatchLog("Download aborted for " & url.Replace("http://download.pso2.jp/patch_prod/patches/data/win32/", "").Replace("http://download.pso2.jp/patch_prod/patches_old/data/win32/", "").Replace("http://download.pso2.jp/patch_prod/patches/", "").Replace(".pat", "") & "!")
         Helper.WriteDebugInfoAndWarning("Download aborted for " & url.Replace("http://download.pso2.jp/patch_prod/patches/data/win32/", "").Replace("http://download.pso2.jp/patch_prod/patches_old/data/win32/", "").Replace("http://download.pso2.jp/patch_prod/patches/", "").Replace(".pat", "") & "!")
         patchfilecount -= 1
         'Throw New NotImplementedException()
     End Sub
 
-    Private Sub IRenderer_OnHashStart() Implements IRenderer.OnHashStart
-        Helper.WriteDebugInfo("Beginning QUANTUM SYSTEM update check...")
-        _downloadedfilecount = 0
+    Private Sub ITrigger_OnHashStart(files As IEnumerable(Of String)) Implements ITrigger.OnHashStart
+        'Helper.WriteDebugInfo("Beginning QUANTUM SYSTEM update check...")
+        '_downloadedfilecount = 0
+        Throw New NotImplementedException()
     End Sub
 
-    Private Sub IRenderer_OnHashProgress(progress As Integer, total As Integer) Implements IRenderer.OnHashProgress
+    Private Sub ITrigger_OnHashProgress(progress As Integer, total As Integer) Implements ITrigger.OnHashProgress
         Dim progressvalue As Integer = CInt((progress * 100 / total))
         If total - progress > 0 And total - progress < 10 And SeenMessage = False Then
             Helper.WriteDebugInfo("These last few files might take a bit, please wait...")
@@ -3162,13 +3164,82 @@ Public Class ConsoleRenderer
         'FrmMain.lblStatus.Text = progress & " out of " & total & " files hashed."
     End Sub
 
-    Private Sub IRenderer_OnHashComplete() Implements IRenderer.OnHashComplete
+    Private Sub ITrigger_OnHashComplete() Implements ITrigger.OnHashComplete
         'Throw New NotImplementedException()
 
     End Sub
 
-    Private Sub IRenderer_OnPatchingStart(fileCount As Integer) Implements IRenderer.OnPatchingStart
+    Private Sub ITrigger_OnPatchingStart(fileCount As Integer) Implements ITrigger.OnPatchingStart
         patchfilecount = fileCount
         'Throw New NotImplementedException()
     End Sub
+
+    Private Sub ITrigger_IfUpdateNotNeeded() Implements ITrigger.IfUpdateNotNeeded
+        Throw New NotImplementedException()
+    End Sub
+
+    Private Sub ITrigger_OnBackupRestore(backupFiles As IEnumerable(Of String)) Implements ITrigger.OnBackupRestore
+        Throw New NotImplementedException()
+    End Sub
+
+    Private Sub ITrigger_OnCensorRemoval() Implements ITrigger.OnCensorRemoval
+        Throw New NotImplementedException()
+    End Sub
+
+    Private Sub ITrigger_OnClientHashReadFailed() Implements ITrigger.OnClientHashReadFailed
+        Throw New NotImplementedException()
+    End Sub
+
+    Private Sub ITrigger_OnClientHashReadSuccess() Implements ITrigger.OnClientHashReadSuccess
+        Throw New NotImplementedException()
+    End Sub
+
+    Private Sub ITrigger_OnHousekeeping() Implements ITrigger.OnHousekeeping
+        Throw New NotImplementedException()
+    End Sub
+
+    Private Sub ITrigger_OnLegacyFilesFound(legacyFiles As IEnumerable(Of String)) Implements ITrigger.OnLegacyFilesFound
+        Throw New NotImplementedException()
+    End Sub
+
+    Private Sub ITrigger_OnLegacyFilesFound() Implements ITrigger.OnLegacyFilesNotFound
+        Throw New NotImplementedException()
+    End Sub
+
+    Private Sub ITrigger_OnLegacyFilesScanning() Implements ITrigger.OnLegacyFilesScanning
+        Throw New NotImplementedException()
+    End Sub
+
+    Private Sub ITrigger_OnMissingFilesDiscovery(missingFiles As IEnumerable(Of String)) Implements ITrigger.OnMissingFilesDiscovery
+        Throw New NotImplementedException()
+    End Sub
+
+    Private Sub ITrigger_OnPatchingFailed(failCount As Integer) Implements ITrigger.OnPatchingFailed
+        Throw New NotImplementedException()
+    End Sub
+
+    Private Sub ITrigger_OnPatchingSuccess() Implements ITrigger.OnPatchingSuccess
+        Throw New NotImplementedException()
+    End Sub
+
+    Private Sub ITrigger_OnPatchingResume(missingFiles As IEnumerable(Of String)) Implements ITrigger.OnPatchingResume
+        Throw New NotImplementedException()
+    End Sub
+
+    Private Sub ITrigger_OnPatchlistFetchCompleted(count As Integer) Implements ITrigger.OnPatchlistFetchCompleted
+        Throw New NotImplementedException()
+    End Sub
+
+    Private Sub ITrigger_OnPatchlistFetchStart() Implements ITrigger.OnPatchlistFetchStart
+        Throw New NotImplementedException()
+    End Sub
+
+    Private Sub ITrigger_OnUpdateCompleted() Implements ITrigger.OnUpdateCompleted
+        Throw New NotImplementedException()
+    End Sub
+
+    Private Sub ITrigger_OnUpdateStart(rehash As Boolean) Implements ITrigger.OnUpdateStart
+        Throw New NotImplementedException()
+    End Sub
+
 End Class
