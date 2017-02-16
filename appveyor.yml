@@ -9,7 +9,7 @@ cache:
 
 before_build:
 - cmd: nuget source add -Name Local -Source %APPVEYOR_BUILD_FOLDER%\dist
-- cmd: nuget restore "PSO2 Tweaker.sln"
+- cmd: nuget restore "ArksLayer.Tweaker.sln"
 
 after_build:
 - cmd: git rev-parse --short %APPVEYOR_REPO_COMMIT%>%TMP%\gitshort.txt
