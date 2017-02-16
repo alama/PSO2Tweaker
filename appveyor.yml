@@ -15,11 +15,11 @@ after_build:
 - cmd: git rev-parse --short %APPVEYOR_REPO_COMMIT%>%TMP%\gitshort.txt
 - cmd: set /P GITSHORT=<%TMP%\gitshort.txt
 - set BUILD_ARCHIVE=%APPVEYOR_REPO_BRANCH%-%GITSHORT%-%CONFIGURATION%.7z
-- cmd: cd "PSO2 Tweaker\bin\"
-- cmd: cd %CONFIGURATION%
-- cmd: 7z a %BUILD_ARCHIVE% *.* -xr!.gitignore
-- appveyor PushArtifact %BUILD_ARCHIVE%
-- cmd: cd ..\..\..
+#- cmd: cd "PSO2 Tweaker\bin\"
+#- cmd: cd %CONFIGURATION%
+#- cmd: 7z a %BUILD_ARCHIVE% *.* -xr!.gitignore
+#- appveyor PushArtifact %BUILD_ARCHIVE%
+#- cmd: cd ..\..\..
 - set BUILD_ARCHIVE=%APPVEYOR_REPO_BRANCH%-%GITSHORT%-%CONFIGURATION%-Terminal.7z
 - cmd: cd ArksLayer.Tweaker.Terminal\bin\%CONFIGURATION%
 - cmd: 7z a %BUILD_ARCHIVE% *.* -xr!.gitignore
