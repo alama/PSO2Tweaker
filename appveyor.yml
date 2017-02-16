@@ -27,6 +27,6 @@ after_build:
 - cmd: cd ..\..\..
 
 build:
-  project: "PSO2 Tweaker.sln"
+  project: "ArksLayer.Tweaker.sln"
   verbosity: quiet
- 
+
