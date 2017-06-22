@@ -80,6 +80,8 @@ Partial Class FrmMain
         Me.btnAnalyze = New DevComponents.DotNetBar.ButtonItem()
         Me.Button2 = New DevComponents.DotNetBar.ButtonItem()
         Me.ButtonItem10 = New DevComponents.DotNetBar.ButtonItem()
+        Me.ButtonItem4 = New DevComponents.DotNetBar.ButtonItem()
+        Me.BtnUpdatePso2 = New DevComponents.DotNetBar.ButtonItem()
         Me.btnGameguard = New DevComponents.DotNetBar.ButtonItem()
         Me.btnFixPSO2EXEs = New DevComponents.DotNetBar.ButtonItem()
         Me.btnFixPermissions = New DevComponents.DotNetBar.ButtonItem()
@@ -111,7 +113,6 @@ Partial Class FrmMain
         Me.btnDonateToCirno = New DevComponents.DotNetBar.ButtonItem()
         Me.btnDonateToTweaker = New DevComponents.DotNetBar.ButtonItem()
         Me.btnQUANTUMSYSTEM = New DevComponents.DotNetBar.ButtonItem()
-        Me.BtnUpdatePso2 = New DevComponents.DotNetBar.ButtonItem()
         Me.btnDownloadPrepatch = New DevComponents.DotNetBar.ButtonItem()
         Me.btnCheckForStoryUpdates = New DevComponents.DotNetBar.ButtonItem()
         Me.chkAlwaysOnTop = New DevComponents.DotNetBar.CheckBoxItem()
@@ -397,7 +398,7 @@ Partial Class FrmMain
         Me.ItemContainer3.LayoutOrientation = DevComponents.DotNetBar.eOrientation.Vertical
         Me.ItemContainer3.MinimumSize = New System.Drawing.Size(120, 0)
         Me.ItemContainer3.Name = "ItemContainer3"
-        Me.ItemContainer3.SubItems.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.btnLaunchPSO2fromORB, Me.btnSelectPSODir, Me.ButtonInstall, Me.btnRestoreBackups, Me.ButtonItem1, Me.ButtonItem2, Me.btnOtherStuff, Me.ButtonItem3, Me.btnDonations, Me.btnQUANTUMSYSTEM, Me.BtnUpdatePso2, Me.btnDownloadPrepatch, Me.btnCheckForStoryUpdates, Me.chkAlwaysOnTop, Me.chkItemTranslation, Me.btnConfigureItemTranslation})
+        Me.ItemContainer3.SubItems.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.btnLaunchPSO2fromORB, Me.btnSelectPSODir, Me.ButtonInstall, Me.btnRestoreBackups, Me.ButtonItem1, Me.ButtonItem2, Me.btnOtherStuff, Me.ButtonItem3, Me.btnDonations, Me.btnQUANTUMSYSTEM, Me.btnDownloadPrepatch, Me.btnCheckForStoryUpdates, Me.chkAlwaysOnTop, Me.chkItemTranslation, Me.btnConfigureItemTranslation})
         '
         'btnLaunchPSO2fromORB
         '
@@ -526,7 +527,7 @@ Partial Class FrmMain
         'ButtonItem2
         '
         Me.ButtonItem2.Name = "ButtonItem2"
-        Me.ButtonItem2.SubItems.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.btnAnalyze, Me.Button2, Me.ButtonItem10, Me.btnGameguard, Me.btnFixPSO2EXEs, Me.btnFixPermissions, Me.btnCopyInfo, Me.ButtonItem17, Me.btnResetTweaker, Me.btnResumePatching, Me.btnTerminate})
+        Me.ButtonItem2.SubItems.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.btnAnalyze, Me.Button2, Me.ButtonItem10, Me.ButtonItem4, Me.BtnUpdatePso2, Me.btnGameguard, Me.btnFixPSO2EXEs, Me.btnFixPermissions, Me.btnCopyInfo, Me.ButtonItem17, Me.btnResetTweaker, Me.btnResumePatching, Me.btnTerminate})
         resources.ApplyResources(Me.ButtonItem2, "ButtonItem2")
         '
         'btnAnalyze
@@ -543,6 +544,18 @@ Partial Class FrmMain
         '
         Me.ButtonItem10.Name = "ButtonItem10"
         resources.ApplyResources(Me.ButtonItem10, "ButtonItem10")
+        '
+        'ButtonItem4
+        '
+        Me.ButtonItem4.Name = "ButtonItem4"
+        resources.ApplyResources(Me.ButtonItem4, "ButtonItem4")
+        '
+        'BtnUpdatePso2
+        '
+        Me.BtnUpdatePso2.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
+        Me.BtnUpdatePso2.Name = "BtnUpdatePso2"
+        Me.BtnUpdatePso2.SubItemsExpandWidth = 24
+        resources.ApplyResources(Me.BtnUpdatePso2, "BtnUpdatePso2")
         '
         'btnGameguard
         '
@@ -709,15 +722,6 @@ Partial Class FrmMain
         Me.btnQUANTUMSYSTEM.Name = "btnQUANTUMSYSTEM"
         Me.btnQUANTUMSYSTEM.SubItemsExpandWidth = 24
         resources.ApplyResources(Me.btnQUANTUMSYSTEM, "btnQUANTUMSYSTEM")
-        '
-        'BtnUpdatePso2
-        '
-        Me.BtnUpdatePso2.BeginGroup = True
-        Me.BtnUpdatePso2.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText
-        Me.BtnUpdatePso2.Name = "BtnUpdatePso2"
-        Me.BtnUpdatePso2.SubItemsExpandWidth = 24
-        resources.ApplyResources(Me.BtnUpdatePso2, "BtnUpdatePso2")
-        Me.BtnUpdatePso2.Visible = False
         '
         'btnDownloadPrepatch
         '
@@ -964,7 +968,6 @@ Partial Class FrmMain
     Friend WithEvents btnDonateToBumped As DevComponents.DotNetBar.ButtonItem
     Friend WithEvents btnDonateToCirno As DevComponents.DotNetBar.ButtonItem
     Friend WithEvents btnDonateToTweaker As DevComponents.DotNetBar.ButtonItem
-    Friend WithEvents BtnUpdatePso2 As DevComponents.DotNetBar.ButtonItem
     Friend WithEvents btnDownloadPrepatch As DevComponents.DotNetBar.ButtonItem
     Friend WithEvents btnCheckForStoryUpdates As DevComponents.DotNetBar.ButtonItem
     Friend WithEvents chkAlwaysOnTop As DevComponents.DotNetBar.CheckBoxItem
@@ -986,4 +989,6 @@ Partial Class FrmMain
     Friend WithEvents btnJPEnemyNames As DevComponents.DotNetBar.ButtonItem
     Friend WithEvents btnJPETrials As DevComponents.DotNetBar.ButtonItem
     Friend WithEvents btnQUANTUMSYSTEM As DevComponents.DotNetBar.ButtonItem
+    Friend WithEvents BtnUpdatePso2 As DevComponents.DotNetBar.ButtonItem
+    Friend WithEvents ButtonItem4 As DevComponents.DotNetBar.ButtonItem
 End Class

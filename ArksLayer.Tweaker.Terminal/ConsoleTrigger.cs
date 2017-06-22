@@ -1,14 +1,12 @@
-﻿using ArksLayer.Tweaker.Abstractions;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Net;
+using ArksLayer.Tweaker.Abstractions;
+using System.Linq;
 
 namespace ArksLayer.Tweaker.Terminal
 {
-    public class ConsoleTrigger : ITrigger
+    internal class ConsoleTrigger : ITrigger
     {
         public void AppendLog(string s)
         {
@@ -17,18 +15,12 @@ namespace ArksLayer.Tweaker.Terminal
 
         public void IfUpdateNotNeeded()
         {
-            Console.WriteLine("Your game is up to date!");
+            Console.WriteLine("Your game is already up-to-date!");
         }
 
         public void OnBackupRestore(IEnumerable<string> backupFiles)
         {
             Console.WriteLine($"Found {backupFiles.Count()} backup files. Restoring them...");
-            // You can log those files if you want.
-        }
-
-        public void OnCensorRemoval()
-        {
-            Console.WriteLine("Removing in-game chat censor...");
         }
 
         public void OnClientHashReadFailed()
@@ -66,6 +58,21 @@ namespace ArksLayer.Tweaker.Terminal
             };
         }
 
+        public void OnFanPatching(string name)
+        {
+            Console.Write("Installing " + name);
+        }
+
+        public void OnFanPatchNotFound()
+        {
+            Console.Write("Cannot find patch zip at given path / URL.");
+        }
+
+        public void OnFanPatchSuccessful(string name)
+        {
+            Console.WriteLine("Successfully installed " + name);
+        }
+
         public void OnHashComplete()
         {
             Console.WriteLine("Game hashing successful!");
@@ -79,7 +86,6 @@ namespace ArksLayer.Tweaker.Terminal
         public void OnHashStart(IEnumerable<string> files)
         {
             Console.WriteLine($"Generating MD5 checksum for {files.Count()} files...");
-            // You can log those files if you want.
         }
 
         public void OnHousekeeping()
@@ -109,7 +115,6 @@ namespace ArksLayer.Tweaker.Terminal
         public void OnMissingFilesDiscovery(IEnumerable<string> missingFiles)
         {
             Console.WriteLine($"Discovered {missingFiles.Count()} missing or changed files.");
-            // You can log those files if you want.
         }
 
         public void OnPatchingFailed(int failCount)
@@ -120,7 +125,6 @@ namespace ArksLayer.Tweaker.Terminal
         public void OnPatchingResume(IEnumerable<string> missingFiles)
         {
             Console.WriteLine($"Resuming patching {missingFiles.Count()} files!");
-            // You can log those files if you want.
         }
 
         public void OnPatchingStart(int fileCount)
@@ -141,6 +145,16 @@ namespace ArksLayer.Tweaker.Terminal
         public void OnPatchlistFetchStart()
         {
             Console.WriteLine("Downloading patchlist...");
+        }
+
+        public void OnTelepipeProxyEnabled(string name)
+        {
+            Console.WriteLine($"You can now connect to {name}!");
+        }
+
+        public void OnTelepipeProxyEnabling()
+        {
+            Console.WriteLine("Downloading and applying PSO2 Proxy...");
         }
 
         public void OnUpdateCompleted()

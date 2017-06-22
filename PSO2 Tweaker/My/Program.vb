@@ -3,6 +3,7 @@ Imports System.IO
 Imports System.Security.Principal
 Imports System.Threading
 Imports System.Net
+Imports PSO2_Tweaker.VEDA
 
 Namespace My
     Public Class Program
@@ -33,6 +34,8 @@ Namespace My
         Public Shared Sub Main()
 
             Try
+                Client.Headers("user-agent") = GetUserAgent()
+
                 Helper.Log("Checking if the PSO2 Tweaker is running")
 
                 If Helper.CheckIfRunning("PSO2 Tweaker") Then Environment.Exit(0)
@@ -89,7 +92,8 @@ Namespace My
                 Try
                     TestURL = Client.DownloadString("http://arks-layer.com/freedom.txt")
 
-                    If RegKey.GetValue(Of Boolean)(RegKey.EnableBeta) = True Then TestURL = TestURL.Replace("freedom/", "freedombeta/")
+                    'Re-Enable this if we do BETAs again
+                    'If RegKey.GetValue(Of Boolean)(RegKey.EnableBeta) = True Then TestURL = TestURL.Replace("freedom/", "freedombeta/")
 
                     If Not TestURL.Contains("freedom") Then
                         Helper.Log("Reverting to default freedom...")
@@ -184,7 +188,9 @@ Namespace My
                                     ' Try up to 4 times to download the translation strings.
                                     For tries As Integer = 1 To 4
                                         Try
-                                            Program.Client.DownloadFile(Program.FreedomUrl & "translation.bin", (Program.Pso2RootDir & "\translation.bin"))
+                                            Dim DLS As New MyWebClient
+                                            DLS.Headers("user-agent") = GetUserAgent()
+                                            DLS.DownloadFile(Program.FreedomUrl & "translation.bin", (Program.Pso2RootDir & "\translation.bin"))
                                             Exit For
                                         Catch ex As Exception
                                             If tries = 4 Then
@@ -267,13 +273,6 @@ Namespace My
                 If String.IsNullOrEmpty(RegKey.GetValue(Of String)(RegKey.EnPatchVersion)) Then RegKey.SetValue(Of String)(RegKey.EnPatchVersion, "Not Installed")
                 If String.IsNullOrEmpty(RegKey.GetValue(Of String)(RegKey.LargeFilesVersion)) Then RegKey.SetValue(Of String)(RegKey.LargeFilesVersion, "Not Installed")
                 If String.IsNullOrEmpty(RegKey.GetValue(Of String)(RegKey.SeenDownloadMessage)) Then RegKey.SetValue(Of String)(RegKey.SeenDownloadMessage, "No")
-
-                If StartPath = Helper.GetDownloadsPath() Then
-                    If RegKey.GetValue(Of String)(RegKey.SeenDownloadMessage) = "No" Then
-                        MsgBox("Please be aware - Due to various Windows 7/8 issues, this program might not work correctly while in the ""Downloads"" folder. Please move it to it's own folder, like C:\Tweaker\")
-                        RegKey.SetValue(Of String)(RegKey.SeenDownloadMessage, "Yes")
-                    End If
-                End If
 
                 If String.IsNullOrEmpty(RegKey.GetValue(Of String)(RegKey.AlwaysOnTop)) Then RegKey.SetValue(Of Boolean)(RegKey.AlwaysOnTop, False)
                 IsMainFormTopMost = Convert.ToBoolean(RegKey.GetValue(Of String)(RegKey.AlwaysOnTop))

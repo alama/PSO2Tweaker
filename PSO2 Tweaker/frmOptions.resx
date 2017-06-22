@@ -641,6 +641,9 @@
   <data name="&gt;&gt;LabelX12.ZOrder" xml:space="preserve">
     <value>23</value>
   </data>
+  <data name="chkAutoRemoveCensor.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="chkAutoRemoveCensor.Location" type="System.Drawing.Point, System.Drawing">
     <value>403, 17</value>
   </data>
@@ -1252,6 +1255,9 @@ click cancel and hit Yes.</value>
   </data>
   <data name="ButtonX1.Text" xml:space="preserve">
     <value>PSO2 Tweaker beta settings</value>
+  </data>
+  <data name="ButtonX1.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="&gt;&gt;ButtonX1.Name" xml:space="preserve">
     <value>ButtonX1</value>

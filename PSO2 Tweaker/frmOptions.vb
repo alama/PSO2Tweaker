@@ -423,6 +423,7 @@ Public Class FrmOptions
     End Sub
 
     Private Sub ButtonX1_Click_1(sender As Object, e As EventArgs) Handles ButtonX1.Click
+        Exit Sub
         Dim EnableBetaYesNo As MsgBoxResult = MsgBox("Do you want to enable Tweaker beta testing? This will usually include new features, but could be unstable. You can change this at any time. Changes will take effect when you restart the Tweaker.", vbYesNo)
         If EnableBetaYesNo = vbYes Then
             RegKey.SetValue(Of Boolean)(RegKey.EnableBeta, True)

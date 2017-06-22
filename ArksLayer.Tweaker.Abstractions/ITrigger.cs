@@ -31,14 +31,15 @@ namespace ArksLayer.Tweaker.Abstractions
         void OnBackupRestore(IEnumerable<string> backupFiles);
 
         /// <summary>
-        /// This method will be called once per UpdateEngine.Update if in-game chat censor file is to be deleted.
-        /// </summary>
-        void OnCensorRemoval();
-
-        /// <summary>
         /// This method will be called once per UpdateEngine.Update if previous client hash failed to be read.
         /// </summary>
         void OnClientHashReadFailed();
+
+        /// <summary>
+        /// Will be called when a fan translation patch process is started.
+        /// </summary>
+        /// <param name="name"></param>
+        void OnFanPatching(string name);
 
         /// <summary>
         /// This method will be called once per UpdateEngine.Update if previous client hash successfully read.
@@ -51,6 +52,11 @@ namespace ArksLayer.Tweaker.Abstractions
         /// </summary>
         /// <param name="url"></param>
         void OnDownloadAborted(string url);
+
+        /// <summary>
+        /// This method will be called when user attempted to configure Telepipe Proxy from a JSON file.
+        /// </summary>
+        void OnTelepipeProxyEnabling();
 
         /// <summary>
         /// This method will be called by the UpdateEngine.Update for every downloads that completely failed after certain amount of retries.
@@ -66,6 +72,17 @@ namespace ArksLayer.Tweaker.Abstractions
         /// <param name="url"></param>
         /// <param name="delaySecond"></param>
         void OnDownloadRetry(string url, int delaySecond);
+
+
+        /// <summary>
+        /// This method will be called when user successfully configured Telepipe Proxy from a JSON file.
+        /// </summary>
+        void OnTelepipeProxyEnabled(string name);
+
+        /// <summary>
+        /// Will be called when a fan translation patch process is completed.
+        /// </summary>
+        void OnFanPatchSuccessful(string name);
 
         /// <summary>
         /// This method will be called by the UpdateEngine.Update for every downloads that was started.
@@ -126,6 +143,11 @@ namespace ArksLayer.Tweaker.Abstractions
         /// </summary>
         /// <param name="missingFiles"></param>
         void OnMissingFilesDiscovery(IEnumerable<string> missingFiles);
+
+        /// <summary>
+        /// This method will be called when a fan patch file cannot be found from given URL / File Path.
+        /// </summary>
+        void OnFanPatchNotFound();
 
         /// <summary>
         /// This method will be called once per UpdateEngine.Update if there are one or more game patch downloads that failed.

@@ -1,4 +1,7 @@
-﻿Public Class frmDownloader
+﻿Imports ArksLayer.Tweaker.Abstractions
+Imports ArksLayer.Tweaker.UpdateEngine
+
+Public Class frmDownloader
     Public Sub CleanupUI()
         ProgressBarX1.Text = ""
         ProgressBarX2.Text = ""
@@ -19,5 +22,13 @@
         LabelX5.Text = ""
         LabelX6.Text = ""
         lblTotal.Text = "Initializing system..."
+        Application.DoEvents()
+    End Sub
+
+    Private Sub frmDownloader_Load(sender As Object, e As EventArgs) Handles Me.Load
+        If FrmMain.Visible = False Then
+            Me.Close()
+            Application.Exit()
+        End If
     End Sub
 End Class

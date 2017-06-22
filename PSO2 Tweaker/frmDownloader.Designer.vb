@@ -271,6 +271,7 @@ Partial Class frmDownloader
         Me.Controls.Add(Me.LabelX1)
         Me.DoubleBuffered = True
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
+        Me.MaximizeBox = False
         Me.Name = "frmDownloader"
         Me.TopMost = True
         Me.ResumeLayout(False)

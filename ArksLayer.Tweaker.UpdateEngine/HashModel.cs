@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Threading.Tasks;
 
 namespace ArksLayer.Tweaker.UpdateEngine
@@ -11,23 +13,42 @@ namespace ArksLayer.Tweaker.UpdateEngine
     internal class HashModel
     {
         /// <summary>
-        /// The hard disk buffer size for hashing the file.
-        /// </summary>
-        public int BufferSize { set; get; }
-
-        /// <summary>
         /// The full path to the file to be hashed.
         /// </summary>
         public string FileName { set; get; }
 
         /// <summary>
-        /// The size of the file to be hashed.
+        /// Spawns a background process for processing the file content for this hashing class, 
+        /// which can later be accessed from the ComputeTask property.
+        /// At the same time, creates patch Key and human-readable MD5 Hash from the result.
         /// </summary>
-        public long FileSize { set; get; }
+        public void ComputeHash(byte[] file, string gameDirectory)
+        {
+            this.ComputeTask = Task.Run(() =>
+            {
+                using (var ram = new MemoryStream(file))
+                using (var md5 = MD5.Create())
+                {
+                    var hashBinary = md5.ComputeHash(ram);
+                    this.Key = this.FileName.Remove(0, gameDirectory.Length + 1).Replace('\\', '/');
+                    this.Hash = BitConverter.ToString(hashBinary).Replace("-", "").ToLower();
+                }
+            });
+        }
 
         /// <summary>
-        /// The resulting hash, in binary. You might want to convert this into human-readable string.
+        /// Patch key to be compared to the patchlist.
         /// </summary>
-        public byte[] HashBinary { set; get; }
+        public string Key { set; get; }
+
+        /// <summary>
+        /// Human-readable MD5 hash for the patch file.
+        /// </summary>
+        public string Hash { set; get; }
+
+        /// <summary>
+        /// Compute job for generating the Key and Hash property in background.
+        /// </summary>
+        public Task ComputeTask { get; private set; }
     }
 }

@@ -35,10 +35,5 @@ namespace ArksLayer.Tweaker.Abstractions
         /// Sets or gets the value of the directory path to the Story Patch version.
         /// </summary>
         string StoryPatchVersion { set; get; }
-
-        /// <summary>
-        /// Gets the value of the PSO2 user profile folder.
-        /// </summary>
-        string UserFolder { get; }
     }
 }

@@ -175,6 +175,7 @@
     <Compile Include="frmPlugins.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Server.vb" />
     <Compile Include="Languages.vb" />
     <Compile Include="Md5Provider.vb" />
     <Compile Include="My Project\Resources.Designer.vb">

@@ -12,7 +12,7 @@ Public Class TweakerTrigger
     Dim TotalDownloadedQuantum As Long
     Dim DoneDownloading As Boolean = False
     Dim SeenMessage As Boolean = False
-    Public patchwriter As TextWriter = TextWriter.Synchronized(File.AppendText("patchlog.txt"))
+    Public Shared patchwriter As TextWriter = TextWriter.Synchronized(File.AppendText("patchlog.txt"))
 
     Public Sub WritePatchLog(s As String)
         If frmDownloader.Visible = True Then patchwriter.WriteLine(DateTime.Now.ToString("G") & " " & s)
@@ -26,6 +26,7 @@ Public Class TweakerTrigger
     End Sub
 
     Public Sub IfUpdateNotNeeded() Implements ITrigger.IfUpdateNotNeeded
+        FrmMain.UnlockGui()
         Helper.WriteDebugInfo("Your game appears to be up-to-date! If you believe this is incorrect, please click Troubleshooting -> Check for Old/Missing Files to do a full filecheck instead of a fast check.")
     End Sub
 
@@ -98,18 +99,17 @@ Public Class TweakerTrigger
 
     Public Sub OnDownloadStart(url As String, client As WebClient) Implements ITrigger.OnDownloadStart
         Try
-
             If DoneDownloading = True Then Exit Sub
-            'If url.Contains("PSO2JP.ini") Or url.Contains("gameversion.ver") Or url.Contains("GameGuard.des") Or url.Contains("edition.txt") Then
-            ' patchfilecount -= 1
-            ' client.CancelAsync()
-            ' If patchfilecount = 0 Then
-            ' DoneDownloading = True
-            ' frmDownloader.Hide()
-            ' FrmMain.FinalUpdateSteps()
-            ' Thread.Sleep(10000)
-            ' frmDownloader.Close()
-            ' End If
+            If url.Contains(".txt") Or url.Contains(".ver") Then
+                If patchfilecount > 1 Then patchfilecount -= 1
+                'client.CancelAsync()
+                ' If patchfilecount = 0 Then
+                ' DoneDownloading = True
+                ' frmDownloader.Hide()
+                ' FrmMain.FinalUpdateSteps()
+                ' Thread.Sleep(10000)
+                ' frmDownloader.Close()
+            End If
             ' End If
 
             If patchfilecount > 0 Then frmDownloader.Show()
@@ -163,6 +163,7 @@ Public Class TweakerTrigger
                             percentage = CInt(Math.Truncate(e.BytesReceived / CDbl(e.TotalBytesToReceive) * 100 * 100) / 100)
                             frmDownloader.ProgressBarX1.Value = percentage
                             frmDownloader.LabelX1.Text = "Downloading " & Filename & " (" & String.Format("{0:N2}%", Math.Truncate(e.BytesReceived / CDbl(e.TotalBytesToReceive) * 100 * 100) / 100) & ")"
+                            If frmDownloader.LabelX1.Text.Contains("version.ver") Then frmDownloader.LabelX1.Text = "Building list of files to download, please wait..."
                         End If
                         If frmDownloader.ProgressBarX2.Text = url Then
                             percentage = CInt(Math.Truncate(e.BytesReceived / CDbl(e.TotalBytesToReceive) * 100 * 100) / 100)
@@ -195,7 +196,6 @@ Public Class TweakerTrigger
                             DoneDownloading = True
                             patchwriter.Flush()
                             frmDownloader.Hide()
-                            patchwriter.Close()
                             FrmMain.FinalUpdateSteps()
                         End If
                     Catch ex As Exception

@@ -86,6 +86,23 @@ namespace ArksLayer.Tweaker.Abstractions
                 Root.SetValue(GameDirectoryKey, value.TrimEnd('\\'));
             }
         }
+
+        /// <summary>
+        /// Sets or gets the latest game client version.
+        /// </summary>
+        public string GameVersion
+        {
+            get
+            {
+                return this.GetGameVersion();
+            }
+
+            set
+            {
+                this.SetGameVersion(value);
+            }
+        }
+
         /// <summary>
         /// Using this property, you can manipulate Windows Registry for Tweaker directly.
         /// </summary>
@@ -103,63 +120,6 @@ namespace ArksLayer.Tweaker.Abstractions
             set
             {
                 Root.SetValue(StoryPatchVersionKey, value.Trim());
-            }
-        }
-
-        /// <summary>
-        /// Gets the value of the PSO2 user profile folder.
-        /// </summary>
-        public string UserFolder
-        {
-            get
-            {
-                var documents = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
-                return Path.Combine(documents, @"Documents\SEGA\PHANTASYSTARONLINE2");
-            }
-        }
-
-        /// <summary>
-        /// Sets or gets the value of the game version file.
-        /// </summary>
-        public string GameVersionFile
-        {
-            get
-            {
-                return Path.Combine(UserFolder, "version.ver");
-            }
-        }
-
-        /// <summary>
-        /// A lock for thread-safe game version file IO.
-        /// </summary>
-        private static object GameVersionFileLock = new object();
-
-        /// <summary>
-        /// Sets or gets the value of the game client version.
-        /// </summary>
-        public string GameVersion
-        {
-            set
-            {
-                lock (GameVersionFileLock)
-                {
-                    if (!Directory.Exists(UserFolder))
-                    {
-                        Directory.CreateDirectory(UserFolder);
-                    }
-                    File.WriteAllText(GameVersionFile, value);
-                }
-            }
-            get
-            {
-                lock (GameVersionFileLock)
-                {
-                    if (!File.Exists(GameVersionFile))
-                    {
-                        return null;
-                    }
-                    return File.ReadAllText(GameVersionFile);
-                }
             }
         }
     }

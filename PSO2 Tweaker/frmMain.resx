@@ -747,6 +747,18 @@
   <data name="ButtonItem10.Tooltip" xml:space="preserve">
     <value>Checks for deleted files AND out-of-date files</value>
   </data>
+  <data name="ButtonItem4.Text" xml:space="preserve">
+    <value>Check for Old/Missing Files (Old Method)</value>
+  </data>
+  <data name="ButtonItem4.Tooltip" xml:space="preserve">
+    <value>Checks for deleted files AND out-of-date files</value>
+  </data>
+  <data name="BtnUpdatePso2.Text" xml:space="preserve">
+    <value>Check for PSO2 Updates (Old Method)</value>
+  </data>
+  <data name="BtnUpdatePso2.Tooltip" xml:space="preserve">
+    <value>Checks for any files that need to be updated</value>
+  </data>
   <data name="btnGameguard.Text" xml:space="preserve">
     <value>Fix Gameguard Errors</value>
   </data>
@@ -880,12 +892,6 @@
     <value>Check for PSO2 Updates (QUANTUM SYSTEM)</value>
   </data>
   <data name="btnQUANTUMSYSTEM.Tooltip" xml:space="preserve">
-    <value>Checks for any files that need to be updated</value>
-  </data>
-  <data name="BtnUpdatePso2.Text" xml:space="preserve">
-    <value>Check for PSO2 Updates (Old Method)</value>
-  </data>
-  <data name="BtnUpdatePso2.Tooltip" xml:space="preserve">
     <value>Checks for any files that need to be updated</value>
   </data>
   <data name="btnDownloadPrepatch.Text" xml:space="preserve">
@@ -7626,6 +7632,9 @@
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=
 </value>
   </data>
+  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="$this.Text" xml:space="preserve">
     <value> </value>
   </data>
@@ -7839,6 +7848,18 @@
   <data name="&gt;&gt;ButtonItem10.Type" xml:space="preserve">
     <value>DevComponents.DotNetBar.ButtonItem, DevComponents.DotNetBar2, Version=8.2.0.2, Culture=neutral, PublicKeyToken=5fd520d36328f741</value>
   </data>
+  <data name="&gt;&gt;ButtonItem4.Name" xml:space="preserve">
+    <value>ButtonItem4</value>
+  </data>
+  <data name="&gt;&gt;ButtonItem4.Type" xml:space="preserve">
+    <value>DevComponents.DotNetBar.ButtonItem, DevComponents.DotNetBar2, Version=8.2.0.2, Culture=neutral, PublicKeyToken=5fd520d36328f741</value>
+  </data>
+  <data name="&gt;&gt;BtnUpdatePso2.Name" xml:space="preserve">
+    <value>BtnUpdatePso2</value>
+  </data>
+  <data name="&gt;&gt;BtnUpdatePso2.Type" xml:space="preserve">
+    <value>DevComponents.DotNetBar.ButtonItem, DevComponents.DotNetBar2, Version=8.2.0.2, Culture=neutral, PublicKeyToken=5fd520d36328f741</value>
+  </data>
   <data name="&gt;&gt;btnGameguard.Name" xml:space="preserve">
     <value>btnGameguard</value>
   </data>
@@ -8025,12 +8046,6 @@
   <data name="&gt;&gt;btnQUANTUMSYSTEM.Type" xml:space="preserve">
     <value>DevComponents.DotNetBar.ButtonItem, DevComponents.DotNetBar2, Version=8.2.0.2, Culture=neutral, PublicKeyToken=5fd520d36328f741</value>
   </data>
-  <data name="&gt;&gt;BtnUpdatePso2.Name" xml:space="preserve">
-    <value>BtnUpdatePso2</value>
-  </data>
-  <data name="&gt;&gt;BtnUpdatePso2.Type" xml:space="preserve">
-    <value>DevComponents.DotNetBar.ButtonItem, DevComponents.DotNetBar2, Version=8.2.0.2, Culture=neutral, PublicKeyToken=5fd520d36328f741</value>
-  </data>
   <data name="&gt;&gt;btnDownloadPrepatch.Name" xml:space="preserve">
     <value>btnDownloadPrepatch</value>
   </data>
@@ -8101,7 +8116,7 @@
     <value>DLS</value>
   </data>
   <data name="&gt;&gt;DLS.Type" xml:space="preserve">
-    <value>PSO2_Tweaker.My.MyWebClient, PSO2 Tweaker, Version=3.1.1.1, Culture=neutral, PublicKeyToken=null</value>
+    <value>PSO2_Tweaker.My.MyWebClient, PSO2 Tweaker, Version=3.1.2.2, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>FrmMain</value>

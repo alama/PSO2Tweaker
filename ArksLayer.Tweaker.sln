@@ -3,12 +3,10 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26430.14
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArksLayer.Tweaker.Terminal", "ArksLayer.Tweaker.Terminal\ArksLayer.Tweaker.Terminal.csproj", "{AE734AA6-5314-47B9-A1BE-BF05CE4DBD9F}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "ArksLayer.Tweaker.Terminal", "ArksLayer.Tweaker.Terminal\ArksLayer.Tweaker.Terminal.xproj", "{3C9B998C-16FC-4CE1-9F4C-2BBB64B7BD52}"
 	ProjectSection(ProjectDependencies) = postProject
 		{78B649C1-54FC-492D-AB96-503124912389} = {78B649C1-54FC-492D-AB96-503124912389}
 	EndProjectSection
-EndProject
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "PSO2 Tweaker", "PSO2 Tweaker\PSO2 Tweaker.vbproj", "{E67DEEAD-7493-4C69-8F75-77CE05EA4024}"
 	ProjectSection(ProjectDependencies) = postProject
 		{78B649C1-54FC-492D-AB96-503124912389} = {78B649C1-54FC-492D-AB96-503124912389}
 	EndProjectSection
@@ -28,22 +26,14 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{AE734AA6-5314-47B9-A1BE-BF05CE4DBD9F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AE734AA6-5314-47B9-A1BE-BF05CE4DBD9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AE734AA6-5314-47B9-A1BE-BF05CE4DBD9F}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{AE734AA6-5314-47B9-A1BE-BF05CE4DBD9F}.Debug|x86.Build.0 = Debug|Any CPU
-		{AE734AA6-5314-47B9-A1BE-BF05CE4DBD9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AE734AA6-5314-47B9-A1BE-BF05CE4DBD9F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AE734AA6-5314-47B9-A1BE-BF05CE4DBD9F}.Release|x86.ActiveCfg = Release|Any CPU
-		{AE734AA6-5314-47B9-A1BE-BF05CE4DBD9F}.Release|x86.Build.0 = Release|Any CPU
-		{E67DEEAD-7493-4C69-8F75-77CE05EA4024}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E67DEEAD-7493-4C69-8F75-77CE05EA4024}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E67DEEAD-7493-4C69-8F75-77CE05EA4024}.Debug|x86.ActiveCfg = Debug|x86
-		{E67DEEAD-7493-4C69-8F75-77CE05EA4024}.Debug|x86.Build.0 = Debug|x86
-		{E67DEEAD-7493-4C69-8F75-77CE05EA4024}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E67DEEAD-7493-4C69-8F75-77CE05EA4024}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E67DEEAD-7493-4C69-8F75-77CE05EA4024}.Release|x86.ActiveCfg = Release|x86
-		{E67DEEAD-7493-4C69-8F75-77CE05EA4024}.Release|x86.Build.0 = Release|x86
+		{3C9B998C-16FC-4CE1-9F4C-2BBB64B7BD52}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C9B998C-16FC-4CE1-9F4C-2BBB64B7BD52}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C9B998C-16FC-4CE1-9F4C-2BBB64B7BD52}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{3C9B998C-16FC-4CE1-9F4C-2BBB64B7BD52}.Debug|x86.Build.0 = Debug|Any CPU
+		{3C9B998C-16FC-4CE1-9F4C-2BBB64B7BD52}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C9B998C-16FC-4CE1-9F4C-2BBB64B7BD52}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C9B998C-16FC-4CE1-9F4C-2BBB64B7BD52}.Release|x86.ActiveCfg = Release|Any CPU
+		{3C9B998C-16FC-4CE1-9F4C-2BBB64B7BD52}.Release|x86.Build.0 = Release|Any CPU
 		{88C68BBF-0A30-41E4-89B8-7956EFD0535E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{88C68BBF-0A30-41E4-89B8-7956EFD0535E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{88C68BBF-0A30-41E4-89B8-7956EFD0535E}.Debug|x86.ActiveCfg = Debug|Any CPU
