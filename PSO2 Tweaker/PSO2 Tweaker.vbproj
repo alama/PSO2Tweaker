@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -11,7 +11,7 @@
     <AssemblyName>PSO2 Tweaker</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>WindowsForms</MyType>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
@@ -132,14 +132,6 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ArksLayer.Tweaker.Abstractions, Version=0.4.9.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\ArksLayer.Tweaker.Abstractions.0.4.9\lib\net45\ArksLayer.Tweaker.Abstractions.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="ArksLayer.Tweaker.UpdateEngine, Version=0.4.9.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\ArksLayer.Tweaker.UpdateEngine.0.4.9\lib\net45\ArksLayer.Tweaker.UpdateEngine.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="DevComponents.DotNetBar2">
       <HintPath>..\libs\DevComponents.DotNetBar2.dll</HintPath>
     </Reference>
@@ -404,6 +396,16 @@
     <EmbeddedResource Include="ddraw.dll" />
     <Content Include="FodyWeavers.xml" />
     <Content Include="pso2 icon 512.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ArksLayer.Tweaker.Abstractions\ArksLayer.Tweaker.Abstractions.csproj">
+      <Project>{88c68bbf-0a30-41e4-89b8-7956efd0535e}</Project>
+      <Name>ArksLayer.Tweaker.Abstractions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ArksLayer.Tweaker.UpdateEngine\ArksLayer.Tweaker.UpdateEngine.csproj">
+      <Project>{78b649c1-54fc-492d-ab96-503124912389}</Project>
+      <Name>ArksLayer.Tweaker.UpdateEngine</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <UsingTask TaskName="CosturaCleanup" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.v4.0.dll" TaskFactory="CodeTaskFactory">
